@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace AccountsGui
-{
-    public class Class1
+{    internal interface ITransaction
     {
+        void Withdraw(decimal amount, Person person);
+        void Deposit(decimal amount, Person person);
     }
 }

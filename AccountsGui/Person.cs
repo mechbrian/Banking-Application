@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AccountsGui
 {
-    internal class Person
+    public class Person
     {
         // Fields
         private string password;

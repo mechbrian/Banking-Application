@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Accounts
+namespace AccountsGui
 {
     public static class Logger
     {

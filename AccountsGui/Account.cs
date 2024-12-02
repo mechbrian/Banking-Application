@@ -6,15 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace Accounts
+namespace AccountsGui
 {
-    public enum AccountType
-    {
-        Checking,
-        Saving,
-        Visa,
-        Line_of_credit
-    }
 
     public abstract class Account
     {

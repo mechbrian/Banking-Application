@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace AccountsGui
         public static readonly Dictionary<string, Person> USERS = new Dictionary<string, Person>();
 
         static Bank() {
+            //initialize the USERS collection
             AddUser("Narendra", "1234-5678"); //0
             AddUser("Ilia", "2345-6789"); //1
             AddUser("Mehrdad", "3456-7890"); //2
@@ -26,7 +28,8 @@ namespace AccountsGui
             AddUser("Jake", "9012-3456"); //8
             AddUser("Mayy", "1224-5678"); //9
             AddUser("Nicoletta", "2344-6789"); //10
-                                                 //initialize the ACCOUNTS collection
+
+            //initialize the ACCOUNTS collection
             AddAccount(new VisaAccount()); //VS-100000
             AddAccount(new VisaAccount(150, -500)); //VS-100001
             AddAccount(new SavingAccount(5000)); //SV-100002
@@ -35,7 +38,8 @@ namespace AccountsGui
             AddAccount(new CheckingAccount(1500, true));//CK-100005
             AddAccount(new VisaAccount(50, -550)); //VS-100006
             AddAccount(new SavingAccount(1000)); //SV-100007
-                                                 //associate users with accounts
+            
+            //associate users with accounts
             string number = "VS-100000";
             AddUserToAccount(number, "Narendra");
             AddUserToAccount(number, "Ilia");
@@ -88,26 +92,14 @@ namespace AccountsGui
 
         public static Account GetAccount(string name)
         {
-            if (ACCOUNTS.ContainsKey(name))
-            {
-                return ACCOUNTS[name];
-            }
-            else
-            {
-                throw new AccountException(ExceptionType.ACCOUNT_DOES_NOT_EXIST);
-            }
+            if (ACCOUNTS.ContainsKey(name))  return ACCOUNTS[name];
+            else throw new AccountException(ExceptionType.ACCOUNT_DOES_NOT_EXIST);
         }
 
         public static Person GetUser(string name)
         {
-            if (USERS.ContainsKey(name))
-            {
-                return USERS[name];
-            }
-            else
-            {
-                throw new AccountException(ExceptionType.USER_DOES_NOT_EXIST);
-            }
+            if (USERS.ContainsKey(name)) return USERS[name];
+            else throw new AccountException(ExceptionType.USER_DOES_NOT_EXIST);
         }
 
         public static void SaveAccounts(string filename)

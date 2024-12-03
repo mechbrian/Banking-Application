@@ -33,39 +33,23 @@ namespace AccountsGui
         // Methods
         public void Login(string password)
         {
-            try
+            if (password != this.password)
             {
-                if (password != this.password)
-                {
-                    IsAuthenticated = false;
-                    OnLogin.Invoke(this, new LoginEventArgs(Name, false));
-                    throw new AccountException(ExceptionType.PASSWORD_INCORRECT);
-                }
-                else
-                {
-                    IsAuthenticated = true;
-                    OnLogin.Invoke(this, new LoginEventArgs(Name, true));
-                }
-
-                
+                IsAuthenticated = false;
+                OnLogin.Invoke(this, new LoginEventArgs(Name, false));
+                throw new AccountException(ExceptionType.PASSWORD_INCORRECT);
             }
-            catch (Exception)
+            else
             {
-                throw;
+                IsAuthenticated = true;
+                OnLogin.Invoke(this, new LoginEventArgs(Name, true));
             }
         }
 
         public void Logout()
         {
-            try
-            {
-                IsAuthenticated = false;
-                throw new NotImplementedException();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            IsAuthenticated = false;
+            throw new NotImplementedException();
         }
 
         public override string ToString()

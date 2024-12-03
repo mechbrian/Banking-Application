@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AccountsGui
 {
-    internal enum ExceptionType
+    public enum ExceptionType
     {
         ACCOUNT_DOES_NOT_EXIST,
         CREDIT_LIMIT_HAS_BEEN_EXCEEDED,

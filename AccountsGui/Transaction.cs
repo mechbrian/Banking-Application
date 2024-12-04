@@ -18,10 +18,18 @@ namespace AccountsGui
 
         public Transaction(string accountNumber, decimal amount, Person person, DateTime time)
         {
-            AccountNumber = accountNumber;
-            Amount = amount;
-            Originator = person;
-            Time = time;
+            this.AccountNumber = accountNumber;
+            this.Amount = amount;
+            this.Originator = person;
+            this.Time = time;
+        }
+
+        public Transaction(string accountNumber, decimal amount, Person person, long minutes)
+        {
+            this.AccountNumber = accountNumber;
+            this.Amount = amount;
+            this.Originator = person;
+            this.Time = Utils.BaseTime.AddMinutes(minutes);
         }
 
         public override string ToString()

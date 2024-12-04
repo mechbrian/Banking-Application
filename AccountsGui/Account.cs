@@ -16,20 +16,20 @@ namespace AccountsGui
         public readonly List<Transaction> transactions = new List<Transaction>();
 
         public string Number { get; }
-        public double Balance { get; protected set; }
-        public double LowestBalance { get; protected set; }
+        public decimal Balance { get; protected set; }
+        public decimal LowestBalance { get; protected set; }
 
         public event EventHandler OnLogin;       // Event for login attempts
         public event EventHandler OnTransaction; // Event for transactions
 
-        protected Account(string type, double balance)
+        protected Account(string type, decimal balance)
         {
             Number = $"{type}{LAST_NUMBER++}";
             Balance = balance;
             LowestBalance = balance;
         }
 
-        public void Deposit(double amount, Person person)
+        public void Deposit(decimal amount, Person person)
         {
             Balance += amount;
             if (Balance < LowestBalance)
@@ -37,11 +37,11 @@ namespace AccountsGui
                 LowestBalance = Balance;
             }
 
-            var transaction = new Transaction(Number, amount, person, Utils.Now);
+            Transaction transaction = new Transaction(Number, amount, person, Utils.Now);
             transactions.Add(transaction);
 
             // Trigger the OnTransaction event
-            //OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, true));
+            OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, true));
         }
 
         public void AddUser(Person person)

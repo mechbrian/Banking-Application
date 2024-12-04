@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AccountsGui\AccountsGui.csproj" />
+  </ItemGroup>
+
 </Project>

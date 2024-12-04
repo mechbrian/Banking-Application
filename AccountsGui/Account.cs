@@ -41,7 +41,7 @@ namespace AccountsGui
             transactions.Add(transaction);
 
             // Trigger the OnTransaction event
-            //OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, true));
+            OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, true));
         }
 
         public void AddUser(Person person)

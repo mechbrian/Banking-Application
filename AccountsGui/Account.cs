@@ -37,7 +37,7 @@ namespace AccountsGui
                 LowestBalance = Balance;
             }
 
-            var transaction = new Transaction(Number, amount, person, Utils.Now);
+            Transaction transaction = new Transaction(Number, amount, person, Utils.Now);
             transactions.Add(transaction);
 
             // Trigger the OnTransaction event

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AccountsGui
 {
-    internal class CheckingAccount : Account, ITransaction
+    public class CheckingAccount : Account, ITransaction
     {
         private const decimal COST_PER_TRANSACTION = 0.05m;
         private const decimal INTEREST_RATE = 0.005m;

@@ -10,7 +10,7 @@ using System.Web.Script.Serialization;
 
 namespace AccountsGui
 {
-    static class Bank
+    public static class Bank
     {
         public static readonly Dictionary<string, Account> ACCOUNTS = new Dictionary<string, Account>();
         public static readonly Dictionary<string, Person> USERS = new Dictionary<string, Person>();
@@ -122,6 +122,21 @@ namespace AccountsGui
                 transactions = transactions.Concat(acc.transactions).ToList();
             }
             return transactions;
+        }
+        public static void PrintAccounts()
+        {
+            foreach (Account acc in ACCOUNTS.Values)
+            {
+                Console.WriteLine(acc);
+            }
+        }
+
+        public static void PrintPersons()
+        {
+            foreach(Person person in USERS.Values)
+            {
+                Console.WriteLine(person);
+            }
         }
     }
 }

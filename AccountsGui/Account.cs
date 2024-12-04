@@ -19,8 +19,8 @@ namespace AccountsGui
         public decimal Balance { get; protected set; }
         public decimal LowestBalance { get; protected set; }
 
-        public event EventHandler OnLogin;       // Event for login attempts
-        public event EventHandler OnTransaction; // Event for transactions
+        //public virtual event EventHandler OnLogin;       // Event for login attempts
+        public virtual event EventHandler OnTransaction; // Event for transactions
 
         protected Account(string type, decimal balance)
         {

@@ -18,12 +18,12 @@ namespace AccountsGui
             this.hasOverdraft = hasOverdraft;
         }
 
-        public void Deposit(decimal amount, Person person)
+        public new void Deposit(decimal amount, Person person)
         {
             try
             {
                 //base.Deposit(amount, person);
-                //base.OnTransactionOccur(this, new )
+                //base.OnTransactionOccur(this, new );
             }
             catch (Exception ex)
             {

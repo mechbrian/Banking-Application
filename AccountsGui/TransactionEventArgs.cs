@@ -9,18 +9,10 @@ namespace AccountsGui
     internal class TransactionEventArgs : LoginEventArgs
     {
         public decimal Amount { get; }
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
         public TransactionEventArgs(string personName, decimal amount, bool success) : base(personName, success)
         {
             this.Amount = amount;
         }
-<<<<<<< HEAD
-
-
-=======
->>>>>>> origin/master
     }
 }

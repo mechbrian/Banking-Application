@@ -22,8 +22,8 @@ namespace AccountsGui
         {
             try
             {
-                //base.Deposit(amount, person);
-                //base.OnTransactionOccur(this, new );
+                base.Deposit(amount, person);
+                base.OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, true));
             }
             catch (Exception ex)
             {
@@ -37,24 +37,24 @@ namespace AccountsGui
             {
                 if (this.IsUser(person.Name) == false)
                 {
-                    //this.OnTransactionOccur();
-                    //throw new AccountException();
+                    this.OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, false));
+                    throw new AccountException(ExceptionType.NAME_NOT_ASSOCIATED_WITH_ACCOUNT);
                 }
 
                 if (person.IsAuthenticated == false)
                 {
-                    //this.OnTransactionOccur();
-                    //throw new AccountException();
+                    this.OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, false));
+                    throw new AccountException(ExceptionType.USER_NOT_LOGGED_IN);
                 }
 
                 if (amount > this.Balance && this.hasOverdraft == false)
                 {
-                    //this.OnTransactionOccur();
-                    //throw new AccountException();
+                    this.OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, false));
+                    throw new AccountException(ExceptionType.NO_OVERDRAFT_FOR_THIS_ACCOUNT);
                 }
 
                 base.Deposit(-amount, person);
-                //this.OnTransactionOccur(this,)
+                this.OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, true));
 
             }
             catch (Exception ex)
@@ -71,7 +71,7 @@ namespace AccountsGui
                 decimal interest = (LowestBalance * INTEREST_RATE) / 12;
 
                 this.Balance += interest - serviceCharge;
-                                
+
                 transactions.Clear();
             }
             catch (Exception ex)

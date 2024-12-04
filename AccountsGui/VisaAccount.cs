@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AccountsGui
 {
-    public class VisaAccount : Account, ITransaction
+    public class VisaAccount : Account
     {
         private decimal creditLimit;
         private const decimal INTEREST_RATE = 0.1995m;
@@ -44,7 +44,7 @@ namespace AccountsGui
             OnTransactionOccur(this, new TransactionEventArgs(person.Name, -amount, true));
         }
 
-        public override void PrepareMonthlyReport()
+        public override void PrepareMonthlyStatement()
         {
             decimal interest = (LowestBalance * INTEREST_RATE) / 12;
             Balance -= interest;

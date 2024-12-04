@@ -28,6 +28,7 @@ namespace AccountsGui
             Name = name;
             Sin = sin;
             IsAuthenticated = false;
+            password = Sin.Substring(0,3);
         }
 
         // Methods

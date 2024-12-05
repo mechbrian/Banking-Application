@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +10,10 @@ namespace AccountsGui
     {
         public decimal Amount { get; }
 
-        public TransactionEventArgs(string personName, decimal amount, bool success) : base(personName, success)
+        public TransactionEventArgs(string personName, decimal amount, bool success) 
+            : base(personName, success) 
         {
-            this.Amount = amount;
+            Amount = amount;  
         }
     }
 }

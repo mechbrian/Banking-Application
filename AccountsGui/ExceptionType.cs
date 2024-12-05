@@ -14,6 +14,7 @@ namespace AccountsGui
         NO_OVERDRAFT_FOR_THIS_ACCOUNT,
         PASSWORD_INCORRECT,
         USER_DOES_NOT_EXIST,
-        USER_NOT_LOGGED_IN
+        USER_NOT_LOGGED_IN,
+        INSUFFICIENT_FUNDS
     }
 }

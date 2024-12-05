@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,10 +11,10 @@ namespace AccountsGui
         public string PersonName { get; }
         public bool Success { get; }
 
-        public LoginEventArgs(string PersonName, bool Success)
+        public LoginEventArgs(string personName, bool success)
         {
-            this.PersonName = PersonName;
-            this.Success = Success;
+            PersonName = personName;
+            Success = success;
         }
     }
 }

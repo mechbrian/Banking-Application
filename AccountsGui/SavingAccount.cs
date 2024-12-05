@@ -8,8 +8,8 @@ namespace AccountsGui
 {
     public class SavingAccount : Account, ITransaction
     {
-        private static decimal COST_PER_TRANSACTION = 0.5m;
-        private static decimal INTEREST_RATE = 0.015m;
+        private static decimal COST_PER_TRANSACTION = (decimal)0.05;
+        private static decimal INTEREST_RATE = (decimal)0.015;
 
         public SavingAccount(decimal balance = 0) : base("SV-", balance) { }
 
@@ -17,17 +17,17 @@ namespace AccountsGui
         {
             try
             {
-                if (!IsUser(person.Name))
-                {
-                    OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, false));
-                    throw new AccountException(ExceptionType.NAME_NOT_ASSOCIATED_WITH_ACCOUNT);
-                }
+                //if (!IsUser(person.Name))
+                //{
+                //    OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, false));
+                //    throw new AccountException(ExceptionType.NAME_NOT_ASSOCIATED_WITH_ACCOUNT);
+                //}
 
-                if (!person.IsAuthenticated)
-                {
-                    OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, false));
-                    throw new AccountException(ExceptionType.USER_NOT_LOGGED_IN);
-                }
+                //if (!person.IsAuthenticated)
+                //{
+                //    OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, false));
+                //    throw new AccountException(ExceptionType.USER_NOT_LOGGED_IN);
+                //}
 
                 base.Deposit(amount, person);
                 OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, true));
@@ -87,10 +87,11 @@ namespace AccountsGui
         {
             try
             {
-                decimal serviceCharge = this.transactions.Count * COST_PER_TRANSACTION;
-                decimal interest = (LowestBalance * INTEREST_RATE) / 12;
+                decimal serviceCharge = this.transactions.Count * SavingAccount.COST_PER_TRANSACTION;
+                decimal interest = (LowestBalance * SavingAccount.INTEREST_RATE) / 12;
 
-                this.Balance += interest - serviceCharge;
+                this.Balance += interest;
+                this.Balance -= serviceCharge;
 
                 transactions.Clear();
             }

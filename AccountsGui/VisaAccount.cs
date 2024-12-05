@@ -21,11 +21,11 @@ namespace AccountsGui
         {
             try
             {
-                if (!IsUser(person.Name))
-                    throw new AccountException(ExceptionType.NAME_NOT_ASSOCIATED_WITH_ACCOUNT);
+                //if (!IsUser(person.Name))
+                //    throw new AccountException(ExceptionType.NAME_NOT_ASSOCIATED_WITH_ACCOUNT);
 
-                if (!person.IsAuthenticated)
-                    throw new AccountException(ExceptionType.USER_NOT_LOGGED_IN);
+                //if (!person.IsAuthenticated)
+                //    throw new AccountException(ExceptionType.USER_NOT_LOGGED_IN);
 
                 Deposit(amount, person);
                 OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, true));
@@ -78,5 +78,4 @@ namespace AccountsGui
             transactions.Clear();
         }
     }
-
 }

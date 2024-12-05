@@ -34,7 +34,7 @@ namespace AccountsGui
 
         public override string ToString()
         {
-            return $"Account: {AccountNumber}, Amount: {Amount:C}, Originator: {Originator}, Time: {Time}";
+            return $"{AccountNumber} Amount: ${Math.Abs(Amount):F2} {(Amount<0 ? "withdrawn" : "deposited")} by {Originator} on {Time}";
         }
     }
 }

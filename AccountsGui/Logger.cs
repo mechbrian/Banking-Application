@@ -50,11 +50,11 @@ namespace AccountsGui
             using (StreamWriter writer = new StreamWriter(filename))
             {
                 Console.WriteLine($"Transaction events as of {Utils.ToString(Utils.Now)}");
-                writer.WriteLine($"Transaction events as of {Utils.ToString(Utils.Now)}");
+                //writer.WriteLine($"Transaction events as of {Utils.ToString(Utils.Now)}");
                 for (int i = 0; i < transactionEvents.Count; i++)
                 {
                     Console.WriteLine($"{i + 1}. {transactionEvents[i]}");
-                    writer.WriteLine($"{i + 1}. {transactionEvents[i]}");
+                    //writer.WriteLine($"{i + 1}. {transactionEvents[i]}");
                 }
             }
         }

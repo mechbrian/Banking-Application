@@ -51,14 +51,21 @@ namespace AccountsGui
 
         public bool IsUser(string name)
         {
-            foreach (var user in users)
+            foreach(Person user in users)
             {
-                if (user.Name == name)
-                {
-                    return true;
-                }
+                if (user.Name == name) return true;
             }
             return false;
+
+            //foreach (var user in users)
+
+            //{
+            //    if (user.Name == name)
+            //    {
+            //        return true;
+            //    }
+            //}
+            //return false;
         }
 
         public virtual void OnTransactionOccur(object sender, EventArgs args)
@@ -81,7 +88,7 @@ namespace AccountsGui
             string userNames = string.Join(", ", users);
             string transactionDetails = string.Join(Environment.NewLine + "   ", transactions);
 
-            string result = $"{Number} {userNames} ${Balance:F2}";
+            string result = $"{Number} {userNames} {(Balance < 0 ? "-" : "")}${Math.Abs(Balance):F2}";
 
             if (transactions.Count > 0)
             {

@@ -8,8 +8,8 @@ namespace AccountsGui
 {
     public class SavingAccount : Account, ITransaction
     {
-        private const decimal COST_PER_TRANSACTION = 0.5m;
-        private const decimal INTEREST_RATE = 0.015m;
+        private static decimal COST_PER_TRANSACTION = 0.5m;
+        private static decimal INTEREST_RATE = 0.015m;
 
         public SavingAccount(decimal balance = 0) : base("SV-", balance) { }
 
@@ -48,7 +48,7 @@ namespace AccountsGui
             if (amount > Balance)
             {
                 OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, false));
-                throw new AccountException(ExceptionType.INSUFFICIENT_FUNDS);
+                throw new AccountException(ExceptionType.NO_OVERDRAFT_FOR_THIS_ACCOUNT);
             }
 
             base.Deposit(-amount, person);

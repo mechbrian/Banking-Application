@@ -50,7 +50,6 @@ namespace AccountsGui
         public void Logout()
         {
             IsAuthenticated = false;
-            throw new NotImplementedException();
         }
 
         public override string ToString()

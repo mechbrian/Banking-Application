@@ -15,44 +15,72 @@ namespace AccountsGui
 
         public new void Deposit(decimal amount, Person person)
         {
-            if (!IsUser(person.Name))
+            try
             {
-                OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, false));
-                throw new AccountException(ExceptionType.NAME_NOT_ASSOCIATED_WITH_ACCOUNT);
-            }
+                if (!IsUser(person.Name))
+                {
+                    OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, false));
+                    throw new AccountException(ExceptionType.NAME_NOT_ASSOCIATED_WITH_ACCOUNT);
+                }
 
-            if (!person.IsAuthenticated)
+                if (!person.IsAuthenticated)
+                {
+                    OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, false));
+                    throw new AccountException(ExceptionType.USER_NOT_LOGGED_IN);
+                }
+
+                base.Deposit(amount, person);
+                OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, true));
+            }
+            catch (AccountException accex)
             {
-                OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, false));
-                throw new AccountException(ExceptionType.USER_NOT_LOGGED_IN);
+                Console.WriteLine(accex.Message);
+                return;
             }
-
-            base.Deposit(amount, person);
-            OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, true));
+            catch (Exception ex)
+            {
+                //throw;
+                Console.WriteLine(ex.Message);
+                return;
+            }
         }
 
         public void Withdraw(decimal amount, Person person)
         {
-            if (!IsUser(person.Name))
+            try
             {
-                OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, false));
-                throw new AccountException(ExceptionType.NAME_NOT_ASSOCIATED_WITH_ACCOUNT);
-            }
+                if (!IsUser(person.Name))
+                {
+                    OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, false));
+                    throw new AccountException(ExceptionType.NAME_NOT_ASSOCIATED_WITH_ACCOUNT);
+                }
 
-            if (!person.IsAuthenticated)
+                if (!person.IsAuthenticated)
+                {
+                    OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, false));
+                    throw new AccountException(ExceptionType.USER_NOT_LOGGED_IN);
+                }
+
+                if (amount > Balance)
+                {
+                    OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, false));
+                    throw new AccountException(ExceptionType.NO_OVERDRAFT_FOR_THIS_ACCOUNT);
+                }
+
+                base.Deposit(-amount, person);
+                OnTransactionOccur(this, new TransactionEventArgs(person.Name, -amount, true));
+            }
+            catch (AccountException accex)
             {
-                OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, false));
-                throw new AccountException(ExceptionType.USER_NOT_LOGGED_IN);
+                Console.WriteLine(accex.Message);
+                return;
             }
-
-            if (amount > Balance)
+            catch (Exception ex)
             {
-                OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, false));
-                throw new AccountException(ExceptionType.NO_OVERDRAFT_FOR_THIS_ACCOUNT);
+                //throw;
+                Console.WriteLine(ex.Message);
+                return;
             }
-
-            base.Deposit(-amount, person);
-            OnTransactionOccur(this, new TransactionEventArgs(person.Name, -amount, true));
         }
 
         public override void PrepareMonthlyStatement()
